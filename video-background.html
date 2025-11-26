@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video with Custom Background - Prison Break</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            max-width: 720px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+            background: #000;
+        }
+
+        .background-layer {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover;
+        }
+
+        .video-layer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            mix-blend-mode: normal;
+        }
+
+        .controls {
+            margin-top: 30px;
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            font-size: 16px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            background: white;
+            color: #667eea;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+            background: #f0f0f0;
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #5568d3 0%, #653a8a 100%);
+        }
+
+        .info-box {
+            margin-top: 30px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 25px;
+            border-radius: 15px;
+            max-width: 720px;
+            width: 100%;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .info-box h2 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 1.5em;
+        }
+
+        .info-box p {
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+
+        .info-box ul {
+            color: #555;
+            line-height: 1.8;
+            margin-left: 20px;
+        }
+
+        .info-box li {
+            margin-bottom: 8px;
+        }
+
+        .format-toggle {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .format-toggle label {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: white;
+            font-weight: 500;
+        }
+
+        .format-toggle input[type="radio"] {
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2em;
+            }
+
+            .header p {
+                font-size: 1em;
+            }
+
+            .btn {
+                padding: 10px 20px;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🎬 Video Background Removal Demo</h1>
+        <p>Transparent video over custom background</p>
+    </div>
+
+    <div class="video-container">
+        <img src="WechatIMG561.jpg" alt="Background" class="background-layer" id="backgroundImg">
+        <video
+            id="videoPlayer"
+            class="video-layer"
+            autoplay
+            loop
+            muted
+            playsinline>
+            <source src="🤐 2025-11-11 22.20.34_no_bg.webm" type="video/webm">
+            <source src="🤐 2025-11-11 22.20.34_no_bg.mov" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+
+    <div class="format-toggle">
+        <label>
+            <input type="radio" name="format" value="webm" checked>
+            WebM (1.6MB)
+        </label>
+        <label>
+            <input type="radio" name="format" value="mov">
+            MOV (61MB)
+        </label>
+    </div>
+
+    <div class="controls">
+        <button class="btn btn-primary" id="playPauseBtn">⏸️ Pause</button>
+        <button class="btn" id="restartBtn">🔄 Restart</button>
+        <button class="btn" id="toggleMuteBtn">🔇 Unmute</button>
+    </div>
+
+    <div class="info-box">
+        <h2>About This Demo</h2>
+        <p>This page demonstrates video background removal using OpenCV's motion-based background subtraction algorithm.</p>
+
+        <h2 style="margin-top: 20px;">Technical Details</h2>
+        <ul>
+            <li><strong>Original Video:</strong> 720x976 resolution, 24fps, 121 frames</li>
+            <li><strong>Processing Method:</strong> MOG2 Background Subtractor (OpenCV)</li>
+            <li><strong>Output Formats:</strong></li>
+            <ul>
+                <li>WebM (VP9 codec with alpha channel) - 1.6MB</li>
+                <li>MOV (PNG codec with RGBA) - 61MB</li>
+            </ul>
+            <li><strong>Background Image:</strong> WechatIMG561.jpg</li>
+        </ul>
+
+        <h2 style="margin-top: 20px;">How It Works</h2>
+        <p>The transparent video is layered on top of the background image using CSS positioning. The video maintains its alpha channel, allowing the background to show through the removed areas.</p>
+    </div>
+
+    <script>
+        const video = document.getElementById('videoPlayer');
+        const playPauseBtn = document.getElementById('playPauseBtn');
+        const restartBtn = document.getElementById('restartBtn');
+        const toggleMuteBtn = document.getElementById('toggleMuteBtn');
+        const formatRadios = document.querySelectorAll('input[name="format"]');
+
+        // Play/Pause functionality
+        playPauseBtn.addEventListener('click', () => {
+            if (video.paused) {
+                video.play();
+                playPauseBtn.textContent = '⏸️ Pause';
+            } else {
+                video.pause();
+                playPauseBtn.textContent = '▶️ Play';
+            }
+        });
+
+        // Restart functionality
+        restartBtn.addEventListener('click', () => {
+            video.currentTime = 0;
+            video.play();
+            playPauseBtn.textContent = '⏸️ Pause';
+        });
+
+        // Mute/Unmute functionality
+        toggleMuteBtn.addEventListener('click', () => {
+            video.muted = !video.muted;
+            toggleMuteBtn.textContent = video.muted ? '🔇 Unmute' : '🔊 Mute';
+        });
+
+        // Format toggle functionality
+        formatRadios.forEach(radio => {
+            radio.addEventListener('change', (e) => {
+                const format = e.target.value;
+                const currentTime = video.currentTime;
+                const isPlaying = !video.paused;
+
+                // Change video source
+                video.innerHTML = '';
+
+                if (format === 'webm') {
+                    const source = document.createElement('source');
+                    source.src = '🤐 2025-11-11 22.20.34_no_bg.webm';
+                    source.type = 'video/webm';
+                    video.appendChild(source);
+                } else {
+                    const source = document.createElement('source');
+                    source.src = '🤐 2025-11-11 22.20.34_no_bg.mov';
+                    source.type = 'video/mp4';
+                    video.appendChild(source);
+                }
+
+                video.load();
+                video.currentTime = currentTime;
+
+                if (isPlaying) {
+                    video.play();
+                }
+            });
+        });
+
+        // Auto-play on load
+        window.addEventListener('load', () => {
+            video.play().catch(err => {
+                console.log('Autoplay prevented:', err);
+                playPauseBtn.textContent = '▶️ Play';
+            });
+        });
+    </script>
+</body>
+</html>
