@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prison Break - Felt Dog Adventure</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="game-container">
+        <div class="header">
+            <h1>🐕 Felt Dog Adventure</h1>
+            <p class="subtitle">A soft, plush journey</p>
+        </div>
+
+        <div class="canvas-wrapper">
+            <canvas id="gameCanvas" width="800" height="600"></canvas>
+        </div>
+
+        <div class="controls-info">
+            <div class="control-item">
+                <span class="key">Arrow Keys / WASD</span>
+                <span class="action">Move</span>
+            </div>
+            <div class="control-item">
+                <span class="key">Click</span>
+                <span class="action">Pet the dog</span>
+            </div>
+            <div class="control-item">
+                <span class="key">Space</span>
+                <span class="action">Jump</span>
+            </div>
+        </div>
+
+        <div class="status">
+            <p id="statusText">Click on the felt dog to interact!</p>
+        </div>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+</html>
