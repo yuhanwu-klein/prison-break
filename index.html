@@ -3,14 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prison Break - Felt Dog Adventure</title>
+    <title>Prison Break - Dog Gesture Adventure</title>
     <link rel="stylesheet" href="style.css">
+    <!-- TensorFlow.js and BodyPix for background removal -->
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@3.11.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/body-segmentation@1.0.2"></script>
+    <!-- MediaPipe for hand detection -->
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands@0.4.1646424915/hands.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils@0.3.1640029074/camera_utils.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils@0.3.1620248257/drawing_utils.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <div class="game-container">
         <div class="header">
-            <h1>🐕 Felt Dog Adventure</h1>
-            <p class="subtitle">A soft, plush journey</p>
+            <h1>🐕 Dog Gesture Adventure</h1>
+            <p class="subtitle">An interactive gesture game</p>
         </div>
 
         <div class="canvas-wrapper">
@@ -20,22 +27,28 @@
         <div class="controls-info">
             <div class="control-item">
                 <span class="key">Arrow Keys / WASD</span>
-                <span class="action">Move</span>
+                <span class="action">Move Dog</span>
             </div>
             <div class="control-item">
-                <span class="key">Click</span>
-                <span class="action">Pet the dog</span>
+                <span class="key">Click Canvas</span>
+                <span class="action">Change Background</span>
             </div>
             <div class="control-item">
-                <span class="key">Space</span>
-                <span class="action">Jump</span>
+                <span class="key">Hand Gesture</span>
+                <span class="action">Shake Screen</span>
             </div>
         </div>
 
         <div class="status">
-            <p id="statusText">Click on the felt dog to interact!</p>
+            <p id="statusText">Loading game assets...</p>
         </div>
     </div>
+
+    <!-- Hidden elements for video processing -->
+    <video id="dogVideo" style="display: none;" loop muted playsinline></video>
+    <canvas id="videoCanvas" style="display: none;" width="320" height="240"></canvas>
+    <video id="webcam" style="display: none;" autoplay playsinline></video>
+    <canvas id="handCanvas" style="display: none;" width="640" height="480"></canvas>
 
     <script src="game.js"></script>
 </body>
