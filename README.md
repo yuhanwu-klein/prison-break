@@ -18,29 +18,35 @@ An interactive game featuring a charming felt-style dog character with a plush w
 
 ## Getting Started
 
-### Play the Game
-Simply open `index.html` in a modern web browser to start playing!
+### All-in-One Interface
+Simply open `index.html` in a modern web browser - all features are accessible from one page!
 
-### Extract Dog from Video (AR)
-1. Open `ar-dog-extractor.html` in a modern web browser
-2. Click "Load Video" to load your video (🤐 2025-11-11 22.20.34.mp4)
-3. Click "Start Processing" to extract the dog and remove background
-4. Adjust settings for better results:
-   - **Segmentation Precision**: Controls how accurately the AI detects the dog
-   - **Edge Smoothing**: Smooths the edges for a cleaner look
-5. Click "Download Result" to save the processed video with transparent background
+The app includes three tabs:
 
-### View in 3D AR
-1. Open `ar-3d-viewer.html` in a modern web browser
-2. Click "Play" to start the video in 3D space
-3. Interact with the scene:
+#### 🐕 Felt Dog Game
+- Play the interactive felt dog game
+- Use arrow keys/WASD to move
+- Click to pet the dog
+- Press space to jump
+
+#### ✨ AR Dog Extractor
+1. Click "Load Video" to load your video (🤐 2025-11-11 22.20.34.mp4)
+2. Click "Start Processing" to extract the dog and remove background
+3. Adjust settings for better results:
+   - **Segmentation Precision**: Controls how accurately the AI detects the dog (0.50 recommended)
+   - **Edge Smoothing**: Smooths the edges for a cleaner look (5px recommended)
+4. Click "Download Result" to save the processed video with transparent background
+
+#### 🌍 3D AR Viewer
+1. Click "Play" to start the video in 3D space
+2. Interact with the scene:
    - **Drag**: Rotate the view
    - **Scroll**: Zoom in/out
    - **Right-click drag**: Pan the camera
-4. Use the control panel to:
+3. Use the control panel to:
    - Adjust video size and height
    - Change rotation speed for auto-rotation
-   - Switch between different environments
+   - Switch between different environments (gradient, grid, particles)
 
 ## Controls
 
@@ -99,15 +105,17 @@ This game is designed to be easily extensible. Future features could include:
 
 ```
 prison-break/
-├── index.html              # Main felt dog game
-├── game.js                 # Game logic and rendering
-├── style.css              # Game styling
-├── ar-dog-extractor.html  # AR background removal tool
-├── ar-processor.js        # Video processing logic
-├── ar-3d-viewer.html      # 3D AR viewer
-├── 🤐 2025-11-11 22.20.34.mp4  # Source video
-└── README.md              # This file
+├── index.html                      # Unified app with all features
+├── unified-app.js                  # Tab management and AR functionality
+├── game.js                         # Game logic and rendering
+├── ar-dog-extractor.html          # Standalone AR extractor (optional)
+├── ar-processor.js                # Standalone processor (optional)
+├── ar-3d-viewer.html              # Standalone 3D viewer (optional)
+├── 🤐 2025-11-11 22.20.34.mp4     # Source video
+└── README.md                       # This file
 ```
+
+**Note**: The standalone HTML files (ar-dog-extractor.html, ar-3d-viewer.html) are still available if you prefer to use features separately, but the main `index.html` provides a unified experience with all features in one place.
 
 ## Browser Requirements
 
